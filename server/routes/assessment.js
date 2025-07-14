@@ -7,7 +7,7 @@ const generateReport = require('../utils/generateReport');
 
 const router = express.Router();
 
-// POST https://employee-wellness-app.onrender.com/api/assessment - Save assessment (GAD or PHQ)
+// POST /api/assessment - Save assessment (GAD or PHQ)
 router.post('/', auth, async (req, res) => {
   const userId = req.user.id;
   let { answers, total_score, type = 'GAD-7' } = req.body;
@@ -52,7 +52,7 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
-// GET https://employee-wellness-app.onrender.com/api/assessment/today?type=GAD|PHQ - Check if assessment submitted today
+// GET /api/assessment/today?type=GAD|PHQ - Check if assessment submitted today
 router.get('/today', auth, async (req, res) => {
   const userId = req.user.id;
   const type = req.query.type || 'GAD-7';
@@ -66,7 +66,7 @@ router.get('/today', auth, async (req, res) => {
   res.json({ submitted: result.rows.length > 0 });
 });
 
-// GET https://employee-wellness-app.onrender.com/api/assessment/history?type=GAD|PHQ - Assessment history by type
+// GET /api/assessment/history?type=GAD|PHQ - Assessment history by type
 router.get('/history', auth, async (req, res) => {
   const userId = req.user.id;
   const type = req.query.type || 'GAD-7';
@@ -79,7 +79,7 @@ router.get('/history', auth, async (req, res) => {
   res.json(result.rows);
 });
 
-// GET https://employee-wellness-app.onrender.com/api/assessment/report - Download Apple Health-style report
+// GET /api/assessment/report - Download Apple Health-style report
 router.get('/report', auth, async (req, res) => {
   try {
     const userId = req.user.id;
@@ -140,7 +140,7 @@ const phqData = await pool.query(
   }
 });
 
-// ✅ GET https://employee-wellness-app.onrender.com/api/assessment/all - Admin-only: View full employee assessment history
+// ✅ GET /api/assessment/all - Admin-only: View full employee assessment history
 router.get('/all', auth, async (req, res) => {
   try {
     const user = await pool.query('SELECT role FROM users WHERE id = $1', [req.user.id]);

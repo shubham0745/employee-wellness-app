@@ -149,7 +149,7 @@ router.get('/whoami', authMiddleware, async (req, res) => {
   }
 });
 
-// POST https://employee-wellness-app.onrender.com/api/auth/forgot-password
+// POST /api/auth/forgot-password
 router.post('/forgot-password', async (req, res) => {
   const { email } = req.body;
 

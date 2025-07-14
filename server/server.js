@@ -14,12 +14,12 @@ app.use(cors());
 app.use(express.json());
 
 // API Routes
-app.use('https://employee-wellness-app.onrender.com/api/auth', authRoutes);
-app.use('https://employee-wellness-app.onrender.com/api/assessment', assessmentRoutes);
-app.use('https://employee-wellness-app.onrender.com/api/questions', questionRoutes);
-app.use('https://employee-wellness-app.onrender.com/api/mood', moodRoutes);
-app.use('https://employee-wellness-app.onrender.com/api/admin', adminRoutes);
-app.use('https://employee-wellness-app.onrender.com/api/admin/stats', adminStatsRoute);
+app.use('/api/auth', authRoutes);
+app.use('/api/assessment', assessmentRoutes);
+app.use('/api/questions', questionRoutes);
+app.use('/api/mood', moodRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/admin/stats', adminStatsRoute);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));

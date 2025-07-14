@@ -18,7 +18,7 @@ const AverageScoreLineChart = () => {
   const [chartData, setChartData] = useState(null);
 
   useEffect(() => {
-  axios.get('/api/admin/stats/average-scores', {
+  axios.get(`${process.env.REACT_APP_API_URL}/api/admin/stats/average-scores`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`
     }

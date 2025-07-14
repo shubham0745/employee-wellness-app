@@ -30,7 +30,7 @@ const MyTests = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       const token = localStorage.getItem('token');
-      const res = await axios.get('/api/questions/active', {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/questions/active`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const gad = res.data.filter((q) => q.type === 'GAD-7');

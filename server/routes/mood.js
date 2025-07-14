@@ -5,7 +5,7 @@ const authenticateToken = require('../middleware/auth');
 
 const router = express.Router();
 
-// POST https://employee-wellness-app.onrender.com/api/mood - Save a mood entry (emoji or label)
+// POST /api/mood - Save a mood entry (emoji or label)
 router.post('/', authenticateToken, async (req, res) => {
   const { mood } = req.body;
   const userId = req.user.id;
@@ -48,7 +48,7 @@ router.post('/', authenticateToken, async (req, res) => {
   }
 });
 
-// GET https://employee-wellness-app.onrender.com/api/mood - Fetch mood history (return only mood emoji and timestamp)
+// GET /api/mood - Fetch mood history (return only mood emoji and timestamp)
 router.get('/', authenticateToken, async (req, res) => {
   const userId = req.user.id;
 

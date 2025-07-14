@@ -31,13 +31,13 @@ const MyStats = () => {
     const fetchHistory = async () => {
       const token = localStorage.getItem('token');
 
-      const gad = await axios.get('/api/assessment/history?type=GAD-7', {
+      const gad = await axios.get(`${process.env.REACT_APP_API_URL}/api/assessment/history?type=GAD-7`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      const phq = await axios.get('/api/assessment/history?type=PHQ-9', {
+      const phq = await axios.get(`${process.env.REACT_APP_API_URL}/api/assessment/history?type=PHQ-9`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      const mood = await axios.get('/api/mood', {
+      const mood = await axios.get(`${process.env.REACT_APP_API_URL}/api/mood`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -107,7 +107,7 @@ const MyStats = () => {
 
   const downloadReport = async () => {
     const token = localStorage.getItem('token');
-    const res = await axios.get('/api/assessment/report', {
+    const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/assessment/report`, {
       headers: { Authorization: `Bearer ${token}` },
       responseType: 'blob',
     });
