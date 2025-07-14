@@ -18,7 +18,7 @@ const EmployeeHistory = () => {
       if (filters.state) query.append('state', filters.state);
       if (filters.city) query.append('city', filters.city);
 
-      const res = await axios.get(`http://localhost:5000/api/admin/employees?${query.toString()}`, {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/admin/employees?${query.toString()}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setEmployees(res.data);

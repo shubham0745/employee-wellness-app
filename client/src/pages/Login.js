@@ -14,7 +14,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', {
+      const res = await axios.post('${process.env.REACT_APP_API_URL}/api/auth/login', {
         email,
         password,
       });
@@ -32,7 +32,7 @@ const Login = () => {
 
       console.log('✅ New token saved:', token);
 
-      const me = await axios.get('http://localhost:5000/api/auth/me', {
+      const me = await axios.get('${process.env.REACT_APP_API_URL}/api/auth/me', {
         headers: { Authorization: `Bearer ${token}` },
       });
 

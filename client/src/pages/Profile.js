@@ -21,7 +21,7 @@ const Profile = () => {
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5000/api/auth/me', {
+        const res = await axios.get('${process.env.REACT_APP_API_URL}/api/auth/me', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setProfile(res.data);
@@ -41,7 +41,7 @@ const Profile = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.put('http://localhost:5000/api/auth/update-profile', profile, {
+      await axios.put('${process.env.REACT_APP_API_URL}/api/auth/update-profile', profile, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMessage('Profile updated successfully!');
