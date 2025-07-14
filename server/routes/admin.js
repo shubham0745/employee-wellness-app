@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../db');
 const authenticateToken = require('../middleware/auth');
 
-// GET /api/admin/reminder-settings
+// GET https://employee-wellness-app.onrender.com/api/admin/reminder-settings
 router.get('/reminder-settings', authenticateToken, async (req, res) => {
   try {
     const result = await db.query('SELECT * FROM reminder_settings ORDER BY id DESC LIMIT 1');
@@ -22,7 +22,7 @@ router.get('/reminder-settings', authenticateToken, async (req, res) => {
   }
 });
 
-// POST /api/admin/reminder-settings
+// POST https://employee-wellness-app.onrender.com/api/admin/reminder-settings
 router.post('/reminder-settings', authenticateToken, async (req, res) => {
   let { mood_popup_1, mood_popup_2, water_interval_minutes, posture_interval_minutes } = req.body;
 
@@ -47,7 +47,7 @@ router.post('/reminder-settings', authenticateToken, async (req, res) => {
 
 // ✅ MOVE THESE OUTSIDE 👇
 
-// GET /api/admin/employees
+// GET https://employee-wellness-app.onrender.com/api/admin/employees
 router.get('/employees', authenticateToken, async (req, res) => {
   try {
     const { state, city, designation, theme } = req.query;
@@ -87,7 +87,7 @@ router.get('/employees', authenticateToken, async (req, res) => {
   }
 });
 
-// GET /api/admin/employee-details/:id
+// GET https://employee-wellness-app.onrender.com/api/admin/employee-details/:id
 router.get('/employee-details/:id', authenticateToken, async (req, res) => {
   const employeeId = req.params.id;
 
@@ -131,7 +131,7 @@ router.get('/employee-details/:id', authenticateToken, async (req, res) => {
   }
 });
 
-// GET /api/admin/stats/daily-submissions
+// GET https://employee-wellness-app.onrender.com/api/admin/stats/daily-submissions
 router.get('/stats/daily-submissions', authenticateToken, async (req, res) => {
   try {
     const result = await db.query(`

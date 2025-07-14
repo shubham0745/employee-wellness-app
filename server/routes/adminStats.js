@@ -4,7 +4,7 @@ const pool = require('../db');
 const router = express.Router();
 const authenticateToken = require('../middleware/auth');
 
-// GET /api/admin/stats/overview
+// GET https://employee-wellness-app.onrender.com/api/admin/stats/overview
 router.get('/overview', authenticateToken, async (req, res) => {
   try {
     const totalEmployees = await pool.query("SELECT COUNT(*) FROM users WHERE role = 'employee'");
@@ -24,7 +24,7 @@ router.get('/overview', authenticateToken, async (req, res) => {
   }
 });
 
-// GET /api/admin/stats/severity
+// GET https://employee-wellness-app.onrender.com/api/admin/stats/severity
 router.get('/severity', authenticateToken, async (req, res) => {
   try {
     const result = await pool.query(`
@@ -53,7 +53,7 @@ router.get('/severity', authenticateToken, async (req, res) => {
   }
 });
 
-// GET /api/admin/stats/daily-submissions
+// GET https://employee-wellness-app.onrender.com/api/admin/stats/daily-submissions
 router.get('/stats/daily-submissions', authenticateToken, async (req, res) => {
   try {
     const submissionTrendRes = await pool.query(`
@@ -73,7 +73,7 @@ router.get('/stats/daily-submissions', authenticateToken, async (req, res) => {
   }
 });
 
-// GET /api/admin/stats/mood-distribution
+// GET https://employee-wellness-app.onrender.com/api/admin/stats/mood-distribution
 router.get('/mood-distribution', authenticateToken, async (req, res) => {
   try {
     const result = await pool.query(`
@@ -96,7 +96,7 @@ router.get('/mood-distribution', authenticateToken, async (req, res) => {
   }
 });
 
-/// GET /api/admin/stats/average-scores
+/// GET https://employee-wellness-app.onrender.com/api/admin/stats/average-scores
 router.get('/average-scores', authenticateToken, async (req, res) => {
   try {
     const avgScoreRes = await pool.query(`
