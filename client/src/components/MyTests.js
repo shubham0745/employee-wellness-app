@@ -66,9 +66,11 @@ const MyTests = () => {
   };
 
   try {
-    const res = await axios.post('/api/assessment', payload, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_URL}/api/assessment`,
+      payload,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
     setGadScore(payload.total_score);
   } catch (err) {
     console.error('Submission Error:', err);
@@ -77,28 +79,48 @@ const MyTests = () => {
 };
 
   const submitPhq = async () => {
-    const token = localStorage.getItem('token');
-    const payload = {
-  answers: phqAnswers,
-  total_score: Object.values(phqAnswers).reduce((a, b) => a + parseInt(b), 0),
-  type: 'PHQ-9' 
-};
-    const res = await axios.post('/api/assessment', payload, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    setPhqScore(payload.total_score);
+  const unanswered = phqQuestions.some((q) => !(q.id in phqAnswers));
+  if (unanswered) {
+    alert('Please answer all PHQ-9 questions before submitting.');
+    return;
+  }
+
+  const token = localStorage.getItem('token');
+  const payload = {
+    answers: phqAnswers,
+    total_score: Object.values(phqAnswers).reduce((a, b) => a + parseInt(b), 0),
+    type: 'PHQ-9',
   };
 
+  try {
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_URL}/api/assessment`,
+      payload,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    setPhqScore(payload.total_score);
+  } catch (err) {
+    console.error('Submission Error:', err);
+    alert('Something went wrong while submitting your PHQ-9 assessment.');
+  }
+};
+
   const submitMood = async () => {
-    if (!selectedMood) return;
-    const token = localStorage.getItem('token');
+  if (!selectedMood) return;
+  const token = localStorage.getItem('token');
+
+  try {
     await axios.post(
-      '/api/mood',
+      `${process.env.REACT_APP_API_URL}/api/mood`,
       { mood: selectedMood },
       { headers: { Authorization: `Bearer ${token}` } }
     );
     setMoodSubmitted(true);
-  };
+  } catch (err) {
+    console.error('Mood Submission Error:', err);
+    alert('Something went wrong while submitting your mood.');
+  }
+};
 
   return (
     <div className="test-section">
