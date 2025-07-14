@@ -30,7 +30,7 @@ const Dashboard = () => {
       }
 
       try {
-        const res = await axios.get('${process.env.REACT_APP_API_URL}/api/auth/me', {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/auth/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         console.log('✅ Username response:', res.data);
@@ -43,7 +43,7 @@ const Dashboard = () => {
     const fetchReminderTimes = async () => {
   try {
     const token = localStorage.getItem('token');
-    const res = await axios.get('${process.env.REACT_APP_API_URL}/api/admin/reminder-settings', {
+    const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/admin/reminder-settings`, {
       headers: { Authorization: `Bearer ${token}` }
     });
 
@@ -135,7 +135,7 @@ const Dashboard = () => {
   try {
     const token = localStorage.getItem('token');
     await axios.post(
-      '${process.env.REACT_APP_API_URL}/api/mood',
+      `${process.env.REACT_APP_API_URL}/api/mood`,
       { mood: emoji }, // directly send emoji or map to value if needed
       { headers: { Authorization: `Bearer ${token}` } }
     );

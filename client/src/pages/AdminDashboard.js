@@ -29,7 +29,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const res = await axios.get('${process.env.REACT_APP_API_URL}/api/questions', {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/questions`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setGadQuestions(res.data.filter((q) => q.type?.trim().toUpperCase() === 'GAD-7'));
@@ -46,7 +46,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const res = await axios.get('${process.env.REACT_APP_API_URL}/api/assessment/all', {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/assessment/all`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setAssessmentHistory(res.data);
@@ -60,7 +60,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchReminders = async () => {
       try {
-        const res = await axios.get('${process.env.REACT_APP_API_URL}/api/admin/reminder-settings', {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/admin/reminder-settings`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setReminderSettings(res.data);
@@ -109,7 +109,7 @@ const AdminDashboard = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        '${process.env.REACT_APP_API_URL}/api/admin/reminder-settings',
+        `${process.env.REACT_APP_API_URL}/api/admin/reminder-settings`,
         reminderSettings,
         { headers: { Authorization: `Bearer ${token}` } }
       );
