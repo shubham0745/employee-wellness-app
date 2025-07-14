@@ -30,7 +30,7 @@ const MyTests = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       const token = localStorage.getItem('token');
-      const res = await axios.get('/api/questions/active', {
+      const res = await axios.get('https://employee-wellness-app.onrender.com/api/questions/active', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const gad = res.data.filter((q) => q.type === 'GAD-7');
@@ -66,7 +66,7 @@ const MyTests = () => {
   };
 
   try {
-    const res = await axios.post('/api/assessment', payload, {
+    const res = await axios.post('https://employee-wellness-app.onrender.com/api/assessment', payload, {
       headers: { Authorization: `Bearer ${token}` },
     });
     setGadScore(payload.total_score);
@@ -83,7 +83,7 @@ const MyTests = () => {
   total_score: Object.values(phqAnswers).reduce((a, b) => a + parseInt(b), 0),
   type: 'PHQ-9' 
 };
-    const res = await axios.post('/api/assessment', payload, {
+    const res = await axios.post('https://employee-wellness-app.onrender.com/api/assessment', payload, {
       headers: { Authorization: `Bearer ${token}` },
     });
     setPhqScore(payload.total_score);
@@ -93,7 +93,7 @@ const MyTests = () => {
     if (!selectedMood) return;
     const token = localStorage.getItem('token');
     await axios.post(
-      '/api/mood',
+      'https://employee-wellness-app.onrender.com/api/mood',
       { mood: selectedMood },
       { headers: { Authorization: `Bearer ${token}` } }
     );

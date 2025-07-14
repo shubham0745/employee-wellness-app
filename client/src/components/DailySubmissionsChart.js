@@ -21,7 +21,7 @@ const DailySubmissionsChart = () => {
     const fetchData = async () => {
       const token = localStorage.getItem('token');
       try {
-        const res = await axios.get('/api/admin/stats/daily-submissions', {
+        const res = await axios.get('https://employee-wellness-app.onrender.com/api/admin/stats/daily-submissions', {
           headers: { Authorization: `Bearer ${token}` },
         });
 

@@ -9,7 +9,7 @@ const AdminStats = () => {
     const fetchStats = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('/api/admin/stats/overview', {
+        const res = await axios.get('https://employee-wellness-app.onrender.com/api/admin/stats/overview', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setStats(res.data);

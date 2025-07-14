@@ -19,7 +19,7 @@ const MoodDistributionChart = () =>  {
     const fetchMoodData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('/api/admin/stats/mood-distribution', {
+        const res = await axios.get('https://employee-wellness-app.onrender.com/api/admin/stats/mood-distribution', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
