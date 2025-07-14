@@ -9,7 +9,7 @@ const ForgotPassword = () => {
   const handleForgot = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}https://employee-wellness-app.onrender.com/api/auth/forgot-password`, { email });
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/forgot-password`, { email });
       setMessage(res.data.msg);
     } catch (err) {
       setMessage(err.response?.data?.msg || 'Something went wrong');

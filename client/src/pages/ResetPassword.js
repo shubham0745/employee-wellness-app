@@ -18,7 +18,7 @@ const ResetPassword = () => {
 
     try {
       // 🔁 Updated API endpoint to deployed backend
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}https://employee-wellness-app.onrender.com/api/auth/reset-password/${token}`, {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/reset-password/${token}`, {
         newPassword: password
       });
       setMessage(res.data.msg);

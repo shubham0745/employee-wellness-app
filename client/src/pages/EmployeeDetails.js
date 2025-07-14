@@ -13,7 +13,7 @@ const EmployeeDetails = () => {
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}https://employee-wellness-app.onrender.com/api/admin/employee-details/${employeeId}`, {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/admin/employee-details/${employeeId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setDetails(res.data);
