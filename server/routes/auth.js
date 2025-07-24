@@ -165,7 +165,7 @@ router.post('/forgot-password', async (req, res) => {
       [token, expires, email]
     );
 
-    const resetURL = `http://localhost:3000/reset-password/${token}`;
+    const resetURL = `https://employee-wellness.netlify.app/reset-password/${token}`;
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',
